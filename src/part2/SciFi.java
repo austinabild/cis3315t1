@@ -3,7 +3,7 @@ package part2;
 /**
  * This SciFi class is finished. Use it as a model for Horror and Romance.
  *
- * @author John Phillips
+ * @author Austin Abild
  */
 public class SciFi extends Book {
 
