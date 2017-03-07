@@ -22,6 +22,7 @@ public class T1P3 {
 
     public void createFile() throws IOException {
         File input = new File(file);
+        
         try {
             if (input.exists()) {
                 input.delete();
@@ -41,7 +42,8 @@ public class T1P3 {
 
         Path path = Paths.get(file);
 
-        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(path,
+                StandardCharsets.UTF_8)) {
             for (int i = 0; i < 100; i++) {
                 num = String.format("%02d\r\n", rand.nextInt(100));
                 writer.write(num);
