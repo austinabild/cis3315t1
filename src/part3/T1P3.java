@@ -40,9 +40,9 @@ public class T1P3 {
         Random rand = new Random();
         String num = "";
 
-        Path path = Paths.get(file);
+        Path filePath = Paths.get(file);
 
-        try (BufferedWriter writer = Files.newBufferedWriter(path,
+        try (BufferedWriter writer = Files.newBufferedWriter(filePath,
                 StandardCharsets.UTF_8)) {
             for (int i = 0; i < 100; i++) {
                 num = String.format("%02d\r\n", rand.nextInt(100));
