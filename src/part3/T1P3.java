@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
-
 /**
  * Write 100 random ints to a text file; one int per line. Use a try with
  * resources and a catch block as needed. Add a finally block that prints the
@@ -18,50 +17,52 @@ import java.util.Random;
  * @author Austin Abild
  */
 public class T1P3 {
-    private String fileName = "test.txt";
-        
+
+    private String file = "TestPart3.txt";
+
     public void createFile() throws IOException {
-        File input = new File(fileName);
+        File input = new File(file);
         try {
-            if(input.exists()) {
-               input.delete();
-               Files.createFile(Paths.get(fileName));
+            if (input.exists()) {
+                input.delete();
+                Files.createFile(Paths.get(file));
+            } else {
+                Files.createFile(Paths.get(file));
             }
-            else {
-               Files.createFile(Paths.get(fileName));
-            }
-        }
-        catch (IOException ex) {
-            System.out.println("Failed to create file: " + fileName);
-            throw new IOException(ex);
+        } catch (IOException a) {
+            System.out.println("Failed to create: " + file);
+            throw new IOException(a);
         }
     }
-    public void writeNumbers() throws IOException {
-        String tmp = "";
-        
+
+    public void writeToFile() throws IOException {
         Random rand = new Random();
-        Path path = Paths.get(fileName);
+        String num = "";
+
+        Path path = Paths.get(file);
+
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
-            for(int i = 0; i < 100; i++) {
-                tmp = String.format("%02d\r\n", rand.nextInt(100));
-                writer.write(tmp);
+            for (int i = 0; i < 100; i++) {
+                num = String.format("%02d\r\n", rand.nextInt(100));
+                writer.write(num);
             }
-        } catch (IOException ex) {
-            System.out.println("Failed to write to file: " + fileName);
-            throw new IOException(ex);
+        } catch (IOException a) {
+            System.out.println("Failed to write to: " + file);
+            throw new IOException(a);
         }
     }
+
     public void testFile() {
         try {
             createFile();
-            writeNumbers();
-        } catch (IOException ex) {
-            System.out.println("Program failure: " + ex.getMessage());
-        }
-        finally {
+            writeToFile();
+        } catch (IOException a) {
+            System.out.println("Error: " + a.getMessage());
+        } finally {
             System.out.println("All done");
         }
     }
+
     public static void main(String[] args) {
         T1P3 t1p3 = new T1P3();
         t1p3.testFile();
