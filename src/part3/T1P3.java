@@ -20,23 +20,22 @@ public class T1P3 {
 
     private String file = "TestPart3.txt";
 
-    public void createFile() throws IOException {
-        File input = new File(file);
-        
-        try {
-            if (input.exists()) {
-                input.delete();
-                Files.createFile(Paths.get(file));
-            } else {
-                Files.createFile(Paths.get(file));
-            }
-        } catch (IOException a) {
-            System.out.println("Failed to create: " + file);
-            throw new IOException(a);
-        }
-    }
-
-    public void writeToFile() throws IOException {
+//    public void createFile() throws IOException {
+//        File input = new File(file);
+//        
+//        try {
+//            if (input.exists()) {
+//                input.delete();
+//                Files.createFile(Paths.get(file));
+//            } else {
+//                Files.createFile(Paths.get(file));
+//            }
+//        } catch (IOException a) {
+//            System.out.println("Failed to create: " + file);
+//            throw new IOException(a);
+//        }
+//    }
+    public void writeToFile() {
         Random rand = new Random();
         String num = "";
 
@@ -50,23 +49,25 @@ public class T1P3 {
             }
         } catch (IOException a) {
             System.out.println("Failed to write to: " + file);
-            throw new IOException(a);
-        }
-    }
+            //throw new IOException(a);
 
-    public void testFile() {
-        try {
-            createFile();
-            writeToFile();
-        } catch (IOException a) {
-            System.out.println("Error: " + a.getMessage());
         } finally {
-            System.out.println("All done");
+            System.out.println("All Done");
         }
     }
 
+//    public void testFile() {
+//        try {
+//            createFile();
+//            writeToFile();
+//        } catch (IOException a) {
+//            System.out.println("Error: " + a.getMessage());
+//        } finally {
+//            System.out.println("All done");
+//        }
+//    }
     public static void main(String[] args) {
         T1P3 t1p3 = new T1P3();
-        t1p3.testFile();
+        t1p3.writeToFile();
     }
 }
